@@ -211,9 +211,21 @@ hero.style.transform=`translateY(${window.scrollY*.15}px)`;
     TYPED TEXT
 =========================================*/
 
+const isFrench = document.documentElement.lang === "fr";
+
 new Typed(".hero-tag",{
 
-strings:[
+strings: isFrench ? [
+
+"Développeur Unity Senior",
+
+"Programmeur gameplay",
+
+"Développeur Unity multijoueur",
+
+"Spécialiste IA & réseau"
+
+] : [
 
 "Senior Unity Developer",
 
@@ -381,6 +393,20 @@ btn.style.setProperty("--y",y+"px");
 const contactForm = document.querySelector(".contact-form");
 const formStatus = document.getElementById("form-status");
 
+const formText = document.documentElement.lang === "fr" ? {
+    sending: "Envoi en cours...",
+    send: "Envoyer le message",
+    ok: "✓ Message envoyé avec succès\u202f!",
+    failed: "✗ L'envoi du message a échoué.",
+    error: "✗ Une erreur s'est produite."
+} : {
+    sending: "Sending...",
+    send: "Send Message",
+    ok: "✓ Message sent successfully!",
+    failed: "✗ Failed to send message.",
+    error: "✗ Something went wrong."
+};
+
 if(contactForm){
 
     contactForm.addEventListener("submit", async (e)=>{
@@ -391,7 +417,7 @@ if(contactForm){
         const submitBtn = contactForm.querySelector("button");
 
 
-        submitBtn.innerText = "Sending...";
+        submitBtn.innerText = formText.sending;
         submitBtn.disabled = true;
 
 
@@ -417,7 +443,7 @@ if(contactForm){
 
                 if(formStatus){
 
-                    formStatus.innerHTML = "✓ Message sent successfully!";
+                    formStatus.innerHTML = formText.ok;
                     formStatus.style.color = "#22c55e";
 
                 }
@@ -430,7 +456,7 @@ if(contactForm){
 
                 if(formStatus){
 
-                    formStatus.innerHTML = "✗ Failed to send message.";
+                    formStatus.innerHTML = formText.failed;
                     formStatus.style.color = "#ef4444";
 
                 }
@@ -444,7 +470,7 @@ if(contactForm){
 
             if(formStatus){
 
-                formStatus.innerHTML = "✗ Something went wrong.";
+                formStatus.innerHTML = formText.error;
                 formStatus.style.color = "#ef4444";
 
             }
@@ -453,7 +479,7 @@ if(contactForm){
         }
 
 
-        submitBtn.innerText = "Send Message";
+        submitBtn.innerText = formText.send;
         submitBtn.disabled = false;
 
 
