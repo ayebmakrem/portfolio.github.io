@@ -89,7 +89,7 @@ requestAnimationFrame(update);
 }
 else{
 
-counter.innerText=target+"+";
+counter.innerText=target+(counter.dataset.suffix||"");
 
 }
 
@@ -215,7 +215,7 @@ new Typed(".hero-tag",{
 
 strings:[
 
-"Senior Game Developer",
+"Senior Unity Developer",
 
 "Gameplay Programmer",
 
